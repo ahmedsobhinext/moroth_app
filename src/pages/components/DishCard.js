@@ -21,7 +21,7 @@ const DishCard = ({ title, subtitle, imageUrl, recipeLink }) => {
         {/* Button */}
         <div className="flex justify-center mt-4">
           <Link
-            href={recipeLink}
+            href={`/${recipeLink}`}
             className="bg-gray-700 border-2 border-gold-500 rounded-lg px-6 py-2 flex items-center space-x-2 hover:bg-gold-500 hover:text-black transition-colors duration-300"
           >
             <span className="font-IBMPlexSansArabic text-sm font-semibold text-gray-300">طريقة التحضير</span>
