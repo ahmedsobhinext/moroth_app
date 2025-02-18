@@ -7,13 +7,13 @@ const eventsData = [
     title: 'ليالي الدرعية',
     dates: '٢٣ يناير - ١ فبراير',
     imageUrl: 'diriyah-nights.png',
-    detailsLink: '/diriyah-nights/details',
+    detailsLink: '',
   },
   {
     title: 'لحظات العلا',
     dates: '٧ - ٢٠ نوفمبر',
     imageUrl: 'alula-moments.png',
-    detailsLink: '/alula-moments/details',
+    detailsLink: '',
   },
 ];
 
