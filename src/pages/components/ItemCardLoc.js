@@ -18,13 +18,13 @@ const ItemCardLoc = ({ title, subtitle, imageUrl, detailsLink, locationsLink }) 
 
         {/* Buttons */}
         <div className="flex justify-center space-x-4 mt-4">
-          <Link href={locationsLink} className="bg-gray-800 border-2 border-gold-500 rounded-lg px-6 py-2 flex items-center space-x-2 hover:bg-gold-500 hover:text-black transition-colors duration-300">
+          <Link href={`/${locationsLink}`} className="bg-gray-800 border-2 border-gold-500 rounded-lg px-6 py-2 flex items-center space-x-2 hover:bg-gold-500 hover:text-black transition-colors duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-gold-400">
               <path d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75-4.365-9.75-9.75-9.75zM15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
             </svg>
             <span className="text-sm font-semibold text-gray-300">شاهد الواقع العزز</span>
           </Link>
-          <Link href={detailsLink} className="bg-gray-800 border-2 border-gold-500 rounded-lg px-6 py-2 hover:bg-gold-500 hover:text-black transition-colors duration-300">
+          <Link href={`/${detailsLink}`} className="bg-gray-800 border-2 border-gold-500 rounded-lg px-6 py-2 hover:bg-gold-500 hover:text-black transition-colors duration-300">
             <span className="font-IBMPlexSansArabic text-sm font-semibold text-gray-300">التفاصيل</span>
           </Link>
         </div>
