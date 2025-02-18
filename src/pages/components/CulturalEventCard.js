@@ -21,7 +21,7 @@ const CulturalEventCard = ({ title, dates, imageUrl, detailsLink }) => {
         {/* Button */}
         <div className="flex justify-center mt-6">
           <Link
-            href={detailsLink}
+            href={`/${detailsLink}`}
             className="bg-gold-500 border-2 border-gold-700 rounded-full px-6 py-3 flex items-center space-x-2 hover:bg-gold-600 hover:border-gold-800 transition-all duration-300"
           >
             <span className="font-IBMPlexSansArabic text-lg text-black font-wow font-semibold text-gray-300">التفاصيل</span>
