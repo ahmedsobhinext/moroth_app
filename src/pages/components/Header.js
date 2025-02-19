@@ -8,7 +8,7 @@ const Header = () => {
       {/* Logo */}
       <Link href="/">
       <div className="flex items-center space-x-4">
-        <img src="logo.png" alt="Logo" className="h-16 w-auto" loading='lazy'/>
+        <img src="/logo.png" alt="Logo" className="h-16 w-auto" loading='lazy'/>
         {/* <span className="text-2xl font-bold text-green-700">MOROTH</span> */}
       </div>
       </Link>
