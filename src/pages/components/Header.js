@@ -1,6 +1,7 @@
 // components/Header.js
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
       {/* Logo */}
       <Link href="/">
       <div className="flex items-center space-x-4">
-        <img src="/logo.png" alt="Logo" className="h-16 w-auto" loading='lazy'/>
+        <Image src="/logo.png" alt="Logo" className="h-16 w-auto" loading='lazy' width={100} height={100}/>
         {/* <span className="text-2xl font-bold text-green-700">MOROTH</span> */}
       </div>
       </Link>
