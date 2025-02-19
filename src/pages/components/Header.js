@@ -9,7 +9,7 @@ const Header = () => {
       {/* Logo */}
       <Link href="/">
       <div className="flex items-center space-x-4">
-        <Image src="/logo.png" alt="Logo" className="h-16 w-auto" loading='lazy' width={100} height={100}/>
+        <Image src="/Logooo.PNG" alt="Logo" className="h-16 w-auto" loading='lazy' width={100} height={100}/>
         {/* <span className="text-2xl font-bold text-green-700">MOROTH</span> */}
       </div>
       </Link>
