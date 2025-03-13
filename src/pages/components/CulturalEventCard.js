@@ -5,7 +5,7 @@ const CulturalEventCard = ({ title, dates, imageUrl, detailsLink }) => {
     <div className="relative rounded-lg overflow-hidden border-2 border-gold-500 shadow-lg hover:shadow-xl transition-shadow duration-300">
       {/* Image */}
       <img
-        src={imageUrl}
+        src={`/${imageUrl}`}
         alt={title}
         className="w-full h-512 object-cover filter brightness-90 hover:brightness-100 transition-all duration-300"
       />

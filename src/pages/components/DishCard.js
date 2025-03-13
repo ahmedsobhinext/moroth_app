@@ -5,7 +5,7 @@ const DishCard = ({ title, subtitle, imageUrl, recipeLink }) => {
     <div className="rounded-lg overflow-hidden border-2 border-gold-500 bg-gray-900 shadow-lg hover:shadow-xl transition-shadow duration-300">
       {/* Image */}
       <img
-        src={imageUrl}
+        src={`/${imageUrl}`}
         alt={title}
         className="w-full h-64 object-cover opacity-90 hover:opacity-100 transition-opacity duration-300"
       />

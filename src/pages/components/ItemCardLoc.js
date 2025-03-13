@@ -6,7 +6,7 @@ const ItemCardLoc = ({ title, subtitle, imageUrl, detailsLink, locationsLink }) 
   return (
     <div className="relative rounded-lg overflow-hidden border-2 border-gold-500 bg-gray-900 shadow-lg">
       {/* Image */}
-      <img src={imageUrl} alt={title} className="w-full h-512 object-cover opacity-90 hover:opacity-100 transition-opacity duration-300" />
+      <img src={`/${imageUrl}`} alt={title} className="w-full h-512 object-cover opacity-90 hover:opacity-100 transition-opacity duration-300" />
 
       {/* Content */}
       <div className="absolute bottom-0 w-full p-6 bg-gradient-to-t from-black to-transparent">
