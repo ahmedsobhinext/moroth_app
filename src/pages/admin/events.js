@@ -2,7 +2,7 @@
 import AdminLayout from '../components/AdminLayout';
 import { useState, useEffect } from 'react';
 import { db } from '../../firebase/firebase';
-import { collection, getDocs, addDoc, deleteDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 
 export default function EventsPage() {
   const [events, setEvents] = useState([]);
@@ -13,6 +13,8 @@ export default function EventsPage() {
     date: '',
     image: ''
   });
+  const [viewingEvent, setViewingEvent] = useState(null);
+  const [editingEvent, setEditingEvent] = useState(null);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -31,6 +33,19 @@ export default function EventsPage() {
   const handleDeleteEvent = async (eventId) => {
     await deleteDoc(doc(db, 'events', eventId));
     setEvents(events.filter(event => event.id !== eventId));
+  };
+
+  const handleUpdateEvent = async () => {
+    const eventRef = doc(db, 'events', editingEvent.id);
+    await updateDoc(eventRef, {
+      name: editingEvent.name,
+      description: editingEvent.description,
+      location: editingEvent.location,
+      date: editingEvent.date,
+      image: editingEvent.image
+    });
+    setEvents(events.map(event => event.id === editingEvent.id ? editingEvent : event));
+    setEditingEvent(null);
   };
 
   return (
@@ -84,6 +99,89 @@ export default function EventsPage() {
           </div>
         </div>
 
+        {/* View Event Modal */}
+        {viewingEvent && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="bg-white p-6 rounded-lg max-w-2xl w-full">
+              <h3 className="text-xl font-bold mb-4">{viewingEvent.name}</h3>
+              {viewingEvent.image && (
+                <img 
+                  src={viewingEvent.image} 
+                  alt={viewingEvent.name} 
+                  className="mb-4 max-h-48 w-full object-cover rounded"
+                />
+              )}
+              <p className="mb-2"><strong>Date:</strong> {viewingEvent.date}</p>
+              <p className="mb-2"><strong>Location:</strong> {viewingEvent.location}</p>
+              <p className="mb-4 whitespace-pre-wrap"><strong>Description:</strong> {viewingEvent.description}</p>
+              <button
+                onClick={() => setViewingEvent(null)}
+                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Edit Event Modal */}
+        {editingEvent && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="bg-white p-6 rounded-lg max-w-2xl w-full">
+              <h3 className="text-xl font-bold mb-4">Edit Event</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="Event Name"
+                  className="border rounded p-2"
+                  value={editingEvent.name}
+                  onChange={(e) => setEditingEvent({ ...editingEvent, name: e.target.value })}
+                />
+                <input
+                  type="text"
+                  placeholder="Location"
+                  className="border rounded p-2"
+                  value={editingEvent.location}
+                  onChange={(e) => setEditingEvent({ ...editingEvent, location: e.target.value })}
+                />
+                <input
+                  type="date"
+                  className="border rounded p-2"
+                  value={editingEvent.date}
+                  onChange={(e) => setEditingEvent({ ...editingEvent, date: e.target.value })}
+                />
+                <input
+                  type="text"
+                  placeholder="Image URL"
+                  className="border rounded p-2"
+                  value={editingEvent.image}
+                  onChange={(e) => setEditingEvent({ ...editingEvent, image: e.target.value })}
+                />
+                <textarea
+                  placeholder="Description"
+                  className="border rounded p-2 col-span-2"
+                  value={editingEvent.description}
+                  onChange={(e) => setEditingEvent({ ...editingEvent, description: e.target.value })}
+                />
+                <div className="col-span-2 flex justify-end gap-4">
+                  <button
+                    onClick={() => setEditingEvent(null)}
+                    className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleUpdateEvent}
+                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Events List */}
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
@@ -101,7 +199,19 @@ export default function EventsPage() {
                   <td className="px-6 py-4 whitespace-nowrap">{event.name}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{event.date}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{event.location}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-6 py-4 whitespace-nowrap space-x-4">
+                    <button
+                      onClick={() => setViewingEvent(event)}
+                      className="text-blue-600 hover:text-blue-900"
+                    >
+                      View
+                    </button>
+                    <button
+                      onClick={() => setEditingEvent(event)}
+                      className="text-green-600 hover:text-green-900"
+                    >
+                      Edit
+                    </button>
                     <button
                       onClick={() => handleDeleteEvent(event.id)}
                       className="text-red-600 hover:text-red-900"

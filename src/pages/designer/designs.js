@@ -69,6 +69,12 @@ export default function DesignerDesigns() {
                     <td className="px-6 py-4 whitespace-nowrap">{design.name}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{design.region}</td>
                     <td className="px-6 py-4 whitespace-nowrap space-x-4">
+                    <Link
+                        href={`/designer/designs/view/${design.id}`}
+                        className="text-blue-600 hover:text-blue-900"
+                      >
+                        View
+                      </Link>
                       <Link
                         href={`/designer/designs/edit/${design.id}`}
                         className="text-purple-600 hover:text-purple-900"

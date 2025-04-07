@@ -73,6 +73,12 @@ export default function EventManagerEvents() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">{event.location}</td>
                     <td className="px-6 py-4 whitespace-nowrap space-x-4">
+                    <Link
+                        href={`/event-manager/events/view/${event.id}`}
+                        className="text-blue-600 hover:text-blue-900"
+                      >
+                        View
+                      </Link>
                       <Link
                         href={`/event-manager/events/edit/${event.id}`}
                         className="text-blue-600 hover:text-blue-900"
