@@ -119,6 +119,41 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const registerUser = async (email, password, userData) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+  
+      await setDoc(doc(db, 'users', userCredential.user.uid), {
+        email,
+        role: 'user',
+        ...userData,
+        createdAt: new Date().toISOString()
+      });
+  
+      return userCredential.user;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+   // LoginUser
+   const loginUser = async (email, password) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      return userCredential.user;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -128,6 +163,8 @@ export function AuthProvider({ children }) {
         registerDesigner,
         login,
         loginD,
+        registerUser,
+        loginUser,
         logout
       }}
     >

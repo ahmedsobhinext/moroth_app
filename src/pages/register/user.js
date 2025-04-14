@@ -1,31 +1,25 @@
-// pages/register/event-manager.js
+// pages/register/user.js
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useRouter } from 'next/router';
 
-export default function EventManagerRegistration() {
-  const { registerEventManager } = useAuth();
+export default function UserRegistration() {
+  const { registerUser } = useAuth();
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    fullName: '',
-    organization: ''
+    displayName: ''
   });
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await registerEventManager(
-        formData.email,
-        formData.password,
-        {
-          fullName: formData.fullName,
-          organization: formData.organization
-        }
-      );
-      router.push('/event-manager');
+      await registerUser(formData.email, formData.password, {
+        displayName: formData.displayName
+      });
+      router.push('/');
     } catch (error) {
       setError(error.message);
     }
@@ -35,7 +29,7 @@ export default function EventManagerRegistration() {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Event Manager Registration
+          User Registration
         </h2>
       </div>
 
@@ -48,38 +42,25 @@ export default function EventManagerRegistration() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Full Name 
+                Display Name
               </label>
               <input
                 type="text"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                value={formData.fullName}
-                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                value={formData.displayName}
+                onChange={(e) => setFormData({ ...formData, displayName: e.target.value })}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Organization
-              </label>
-              <input
-                type="text"
-                required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                value={formData.organization}
-                onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-              />
-            </div>
-
-            <div> 
               <label className="block text-sm font-medium text-gray-700">
                 Email address
               </label>
               <input
                 type="email"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
@@ -92,7 +73,7 @@ export default function EventManagerRegistration() {
               <input
                 type="password"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               />
@@ -101,9 +82,9 @@ export default function EventManagerRegistration() {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
-                Register as Event Manager
+                Register
               </button>
             </div>
           </form>
