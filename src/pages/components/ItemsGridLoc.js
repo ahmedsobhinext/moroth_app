@@ -68,7 +68,7 @@ const ItemsGridLoc = () => {
           subtitle: doc.data().location,
           imageUrl: doc.data().photo,
           detailsLink: `/heritage-sites/${doc.id}`,
-          locationsLink: `/heritage-sites/${doc.id}`
+          locationsLink: `/arview/${doc.id}`
         }));
         setItems(sitesData);
         setLoading(false);
