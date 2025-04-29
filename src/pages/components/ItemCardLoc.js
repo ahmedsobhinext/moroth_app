@@ -23,7 +23,7 @@ const ItemCardLoc = ({ title, subtitle, imageUrl, detailsLink, locationsLink }) 
               <path d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75-4.365-9.75-9.75-9.75zM15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
             </svg>
             {/* <Link href={'/arview'}> */}
-            <span className="text-sm font-semibold text-gray-300">شاهد الواقع العزز</span>
+            <span className="text-sm font-semibold text-gray-300">تجوّل افتراضيًا</span>
             {/* </Link> */}
           </Link>
           <Link href={`${detailsLink}`} className="bg-gray-800 border-2 border-gold-500 rounded-lg px-6 py-2 hover:bg-gold-500 hover:text-black transition-colors duration-300">
